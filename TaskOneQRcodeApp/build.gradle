@@ -1,0 +1,42 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'com.h2database:h2'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	
+	// https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper
+	compile group: 'org.apache.tomcat', name: 'tomcat-jasper', version: '9.0.37'
+	
+	compile "com.google.zxing:core:3.3.0"
+	compile 'com.google.zxing:javase:3.3.0'
+	
+	//compile group: 'commons-io', name: 'commons-io', version: '${commons-io.version}'
+	compile group: 'commons-io', name: 'commons-io', version: '2.4'
+	
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	
+}
+
+test {
+	useJUnitPlatform()
+}
