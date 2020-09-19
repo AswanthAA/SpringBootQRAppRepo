@@ -22,29 +22,16 @@ import com.training.qrcode.service.GenerateQrcode;
 @RequestMapping("/api")
 public class QRcodeRestController {
 	
-	private static final String QR_CODE_IMAGE_PATH = "./MyQRCode.png";
-	//@Autowired
-	QrcodeDetails details = new QrcodeDetails();
+	@Autowired
+	QrcodeDetails details;
 	
 	
-	@GetMapping("qrcodee/{qrname}")
+	@GetMapping("/qrcodee/{qrname}")
 	public QrcodeDetails  getQrcode(@PathVariable("qrname") String qrname)throws Exception {
 		
-		System.out.println("//////"+qrname+"/////inside Rest getmapping/////////");
-		
-		BufferedImage qrcodeimage = GenerateQrcode.generateQrcode(qrname, 350, 350, QR_CODE_IMAGE_PATH);
-		
-		
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ImageIO.write( qrcodeimage, "jpg", baos );
-		baos.flush();
-		byte[] imageInByte = baos.toByteArray();
-		String b64 = javax.xml.bind.DatatypeConverter.printBase64Binary(imageInByte);
-		baos.close();
-		
+		//System.out.println("//////"+qrname+"/////inside Rest getmapping/////////");
 		details.setQrname(qrname);
-		details.setBase64image(b64);
-		
+		details.setBase64image(GenerateQrcode.getQRcodeDetails(qrname));
 	    return details;
 	}
 	
