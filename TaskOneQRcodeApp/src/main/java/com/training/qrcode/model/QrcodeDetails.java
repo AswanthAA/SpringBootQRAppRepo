@@ -2,7 +2,10 @@ package com.training.qrcode.model;
 
 import org.springframework.stereotype.Component;
 
+import io.swagger.annotations.ApiModel;
+
 @Component
+@ApiModel(description="Object to hold details of QR code generated")
 public class QrcodeDetails {
 	
 	
